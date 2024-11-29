@@ -1,83 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Terminal Editor</title>
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-    <style>
-        body {
-            font-family: monospace;
-            background-color: #222;
-            color: #fff;
-            padding: 20px;
-        }
-        #terminal {
-            border: 1px solid #444;
-            padding: 10px;
-            height: 300px;
-            overflow-y: auto;
-            white-space: pre-wrap; /* Preserve whitespace */
-        }
-        .input-line {
-            display: flex;
-        }
-        .prompt {
-            color: #0f0;
-        }
-        .input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #fff;
-            outline: none;
-        }
-    </style>
 </head>
 <body>
-    <h1>Python Terminal Editor</h1>
-    <div id="terminal"></div>
-    <div class="input-line">
-        <span class="prompt">>>> </span>
-        <input type="text" id="command-input" class="input" />
-    </div>
-
-    <script>
-        const terminal = document.getElementById('terminal');
-        const commandInput = document.getElementById('command-input');
-
-        // Function to handle command input
-        commandInput.addEventListener('keydown', async function(event) {
-            if (event.key === 'Enter') {
-                const command = commandInput.value;
-                // Display the command in the terminal
-                terminal.innerHTML += `<div><span class="prompt">>>> </span> ${command}</div>`;
-                commandInput.value = ''; // Clear the input
-
-                // Execute the Python command
-                await executePythonCommand(command);
-            }
-        });
-
-        // Function to execute Python code
-        async function executePythonCommand(command) {
-            try {
-                // Check if the command is an install command
-                if (command.startsWith('!pip install')) {
-                    const packageName = command.split(' ')[2];
-                    terminal.innerHTML += `<div>Installing package: ${packageName}...</div>`;
-                    await pyodide.loadPackage(packageName);
-                    terminal.innerHTML += `<div>Package ${packageName} installed successfully.</div>`;
-                } else {
-                    const result = await pyodide.runPythonAsync(command);
-                    terminal.innerHTML += `<div>${result}</div>`;
-                }
-            } catch (error) {
-                terminal.innerHTML += `<div style="color: red;">Error: ${error}</div>`;
-            }
-            terminal.scrollTop = terminal.scrollHeight; // Scroll to the bottom
-        }
-    </script>
+<form class = "grid" action ="/index2.html" method = "POST">
+    <h3 style="color: blue;">Hello {{name}},How are you?</h3>
+    <input type="text" name="name" id="name">
+<label for ="Name">Enter your Name</label>
+<input type="Submit" class = "file_submit">
+</form>
 </body>
 </html>
